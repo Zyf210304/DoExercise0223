@@ -204,17 +204,156 @@ import Foundation
 //    for _ in 0..<count {
 //        let rowStr = readLine()
 //        let rowResult = rowStr?.split(separator: " ")
-//        
+//
 //        let rowKey = Int(rowResult?.first ?? "0")
 //        let rowValue = Int(rowResult?.last ?? "0")
-//        
+//
 //        let nowNumber = dic[rowKey!] ?? 0
 //        dic[rowKey!] = nowNumber + rowValue!
 //    }
-//    
+//
 //    let keys = dic.keys.sorted()
 //    keys.forEach { key in
 //        print("\(key) \(dic[key] ?? 0)")
 //    }
 //}
 
+/*##########################  第9题 ##########################
+
+ 输入一个 int 型整数，按照从右向左的阅读顺序，返回一个不含重复数字的新的整数。
+ 保证输入的整数最后一位不是 0 。
+ 
+ 输入：9876673
+ 输出：37689
+*/
+
+//var array:[Int] = []
+//while let line = readLine() {
+//    line.reversed().forEach { char in
+//        let Str = String(char)
+//        if !array.contains(Int(Str) ?? 0) {
+//            array.append(Int(Str) ?? 0)
+//        }
+//
+//    }
+//    var arr = array.flatMap{String($0)}
+//    print(String(arr))
+//}
+
+/*##########################  第10题 ##########################
+
+ 编写一个函数，计算字符串中含有的不同字符的个数。字符在 ASCII 码范围内( 0~127 ，包括 0 和 127 )，换行表示结束符，不算在字符里。不在范围内的不作统计。多个相同的字符只计算一次
+ 
+ 输入：abc
+ 输出：3
+*/
+
+//var array: [Character] = []
+//while let line = readLine() {
+//    array = []
+//    line.forEach { char in
+//        array.append(char)
+//    }
+//    print(Set(array).count)
+//}
+
+/*##########################  第11题 ##########################
+
+ 输入一个整数，将这个整数以字符串的形式逆序输出
+ 程序不考虑负数的情况，若数字含有0，则逆序形式也含有0，如输入为100，则输出为001
+ 
+ 输入： 1516000
+ 输出： 0006151
+*/
+
+//while let line = readLine() {
+//    line.reversed().forEach { char in
+//        print(char, terminator: "")
+//    }
+//}
+
+/*##########################  第12题 ##########################
+
+ 接受一个只包含小写字母的字符串，然后输出该字符串反转后的字符串。（字符串长度不超过1000）
+ 
+ 输入： adad
+ 输出： dada
+*/
+
+//while let line = readLine() {
+//    line.reversed().forEach { char in
+//        print(char, terminator: "")
+//    }
+//}
+
+/*##########################  第13题 ##########################
+
+ 将一个英文语句以单词为单位逆序排放。例如“I am a boy”，逆序排放后为“boy a am I”
+ 所有单词之间用一个空格隔开，语句中除了英文字母外，不再包含其他字符
+ 
+ 输入： I am a boy
+ 输出： boy a am I
+*/
+
+//while let line = readLine() {
+//    var array = line.split(separator: " ")
+//    array.reversed().forEach { str in
+//        print(str, terminator: " ")
+//    }
+//}
+
+/*##########################  第14题 ##########################
+
+ 给定 n 个字符串，请对 n 个字符串按照字典序排列。
+ 
+ 输入：9
+ cap
+ to
+ cat
+ card
+ two
+ too
+ up
+ boat
+ boot
+ 输出：boat
+ boot
+ cap
+ card
+ cat
+ to
+ too
+ two
+ up
+*/
+
+
+//while let line = readLine() {
+//    var array: [String] = []
+//    let count = Int(line)!
+//    for _ in 0..<count {
+//        let rowStr = readLine()
+//        array.append(rowStr!)
+//    }
+//    print(array.sorted().joined(separator: "\n"))
+//}
+
+/*##########################  第题 ##########################
+
+ 输入一个 int 型的正整数，计算出该 int 型数据在内存中存储时 1 的个数。
+ 
+ 输入：5
+ 输出：2
+*/
+
+//while let line = readLine() {
+//    var number = Int(line)!
+//    var count = 0
+//    while number > 0 {
+//        if number % 2 != 0 {
+//            count += 1
+//        }
+//        number = number / 2
+//    }
+//    print(count)
+//}
