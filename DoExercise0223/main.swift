@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 /*##########################  第题 ##########################
 
  
@@ -354,6 +355,465 @@ import Foundation
 //            count += 1
 //        }
 //        number = number / 2
+//    }
+//    print(count)
+//}
+
+/*##########################  第题 ##########################
+
+ 输入一个 int 型的正整数, 输入整数的反转。
+ 
+ 输入：1234
+ 输出：4321
+*/
+
+//while let line = readLine() {
+//    var number = Int(line)!
+//    var count = 0
+//    while number != 0 {
+//        var lastNumber = number % 10
+//        var newCount = count * 10 + lastNumber
+//
+//
+//        if (newCount - lastNumber) / 10 != count {
+//            print(0)
+//        }
+//
+//        count = newCount
+//
+//        number /= 10
+//    }
+//    print(count)
+//}
+
+/*
+ 描述
+ 编写一个程序，将输入字符串中的字符按如下规则排序。
+
+ 规则 1 ：英文字母从 A 到 Z 排列，不区分大小写。
+ 如，输入： Type 输出： epTy
+ 规则 2 ：同一个英文字母的大小写同时存在时，按照输入顺序排列。
+ 如，输入： BabA 输出： aABb
+ 规则 3 ：非英文字母的其它字符保持原来的位置。
+ 如，输入： By?e 输出： Be?y
+ 数据范围：输入的字符串长度满足
+ 1≤𝑛≤1000
+ 
+ */
+
+//while let line = readLine() {
+//    let with: String = line.filter {
+//        ($0 >= "a" && $0 <= "z") || ($0 >= "A" && $0 <= "Z")
+//    }
+//    let sortWith:[String.Element] = with.sorted {
+//        $0.lowercased() < $1.lowercased()
+//    }
+//
+//    var reslut = ""
+//    var indexR = 0
+//
+//    for char in line {
+//        if (char >= "a" && char <= "z") || (char >= "A" && char <= "Z") {
+//             reslut = "\(reslut)\(sortWith[indexR])"
+//            indexR += 1
+//        } else {
+//            reslut = "\(reslut)\(char)"
+//        }
+//    }
+//
+//    print(reslut)
+//}
+
+/*
+ 描述
+ 开发一个坐标计算工具， A表示向左移动，D表示向右移动，W表示向上移动，S表示向下移动。从（0,0）点开始移动，从输入字符串里面读取一些坐标，并将最终输入结果输出到输出文件里面。
+
+ 输入：
+
+ 合法坐标为A(或者D或者W或者S) + 数字（两位以内）
+
+ 坐标之间以;分隔。
+
+ 非法坐标点需要进行丢弃。如AA10;  A1A;  $%$;  YAD; 等。
+
+ 下面是一个简单的例子 如：
+
+ A10;S20;W10;D30;X;A1A;B10A11;;A10;
+
+ 处理过程：
+
+ 起点（0,0）
+
+ +   A10   =  （-10,0）
+
+ +   S20   =  (-10,-20)
+
+ +   W10  =  (-10,-10)
+
+ +   D30  =  (20,-10)
+
+ +   x    =  无效
+
+ +   A1A   =  无效
+
+ +   B10A11   =  无效
+
+ +  一个空 不影响
+
+ +   A10  =  (10,-10)
+
+ 结果 （10， -10）
+
+ 输入描述：
+ 一行字符串
+
+ 输出描述：
+ 最终坐标，以逗号分隔
+
+ 示例1
+ 输入：
+ A10;S20;W10;D30;X;A1A;B10A11;;A10;
+ 复制
+ 输出：
+ 10,-10
+ 复制
+ 示例2
+ 输入：
+ ABC;AKL;DA1;
+ 复制
+ 输出：
+ 0,0
+ 
+ */
+
+//
+//while let line = readLine() {
+//    var point = Array(repeating: 0, count: 2)
+////    let array = line.split(separator: ";")
+//    let array = line.components(separatedBy: ";")
+//    for str in array {
+//        if checkData(str) {
+//            var item = str
+//            let direct = item.first!
+//            let direction = moveDirection(rawValue: String(direct))
+//            item.removeFirst()
+//            let value = Int(String(item))!
+////            print(value, direction)
+//            switch direction {
+//            case .W:
+//                point[1] += value
+//            case .S:
+//                point[1] -= value
+//            case .A:
+//                point[0] -= value
+//            case .D:
+//                point[0] += value
+//            case .none:
+//                break
+//            }
+//        }
+//    }
+//    print("\(point[0]),\(point[1])")
+//}
+//
+//public enum moveDirection: String {
+//    case W
+//    case A
+//    case S
+//    case D
+//}
+//
+//func checkData(_ str:String) -> Bool {
+//    var item = str
+//    if str.hasPrefix("A") || str.hasPrefix("W") || str.hasPrefix("S") || str.hasPrefix("D") {
+//        item.removeFirst()
+//        let list = Array(item)
+//        if list.count == 0 || list.count > 2 {
+//           return false
+//        }
+//        for char in list {
+//            if char > "9" || char < "0" {
+//                return false
+//            }
+//        }
+//        return true
+//    }
+//
+//    return false
+//}
+
+/*
+ 密码要求:
+
+ 1.长度超过8位
+
+ 2.包括大小写字母.数字.其它符号,以上四种至少三种
+
+ 3.不能有长度大于2的包含公共元素的子串重复 （注：其他符号不含空格或换行）
+
+ 数据范围：输入的字符串长度满足
+ 1≤n≤100
+ 输入描述：
+ 一组字符串。
+
+ 输出描述：
+ 如果符合要求输出：OK，否则输出NG
+ 输入
+ 021Abc9000
+ 021Abc9Abc1
+ 021ABC9000
+ 021$bc9000
+ 输出
+ 
+ OK
+ NG
+ NG
+ OK
+
+ */
+
+//func isPasswordValid(_ password: String) -> Bool {
+//    guard password.count > 8 else {return false}
+//
+//    var containsLowercase = false
+//    var containsUppercase = false
+//    var containsDigit = false
+//    var containsSymbol = false
+//
+//    for char in password {
+//        if char.isLowercase { containsLowercase = true }
+//        else if char.isUppercase { containsUppercase = true }
+//        else if char.isNumber { containsDigit = true}
+//        else {containsSymbol = true}
+//    }
+//
+//    let totalCount = [containsLowercase, containsUppercase, containsDigit, containsSymbol].filter { $0 }.count
+//    if totalCount < 3 {return false}
+//    for i in 0..<password.count - 2 {
+//        let substring = password[password.index(password.startIndex, offsetBy: i)..<password.index(password.startIndex, offsetBy: i + 3)]
+//        if password[password.index(password.startIndex, offsetBy: i + 1)...].contains(substring) {
+//            return false
+//        }
+//    }
+//    return true
+//}
+//
+//while let password = readLine() {
+//    print(isPasswordValid(password) ? "OK" : "NG")
+//}
+
+
+/*
+ 描述
+ 现在有一种密码变换算法。
+ 九键手机键盘上的数字与字母的对应： 1--1， abc--2, def--3, ghi--4, jkl--5, mno--6, pqrs--7, tuv--8 wxyz--9, 0--0，把密码中出现的小写字母都变成九键键盘对应的数字，如：a 变成 2，x 变成 9.
+ 而密码中出现的大写字母则变成小写之后往后移一位，如：X ，先变成小写，再往后移一位，变成了 y ，例外：Z 往后移是 a 。
+ 数字和其它的符号都不做变换。
+ 数据范围： 输入的字符串长度满足
+ 1
+ ≤
+ 𝑛
+ ≤
+ 100
+  
+ 1≤n≤100
+ 输入描述：
+ 输入一组密码，长度不超过100个字符。
+
+ 输出描述：
+ 输出密码变换后的字符串
+
+输出 YUANzhi1987
+ 
+输出 zvbo9441987
+ */
+
+//while let line = readLine() {
+//    var mapIn = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789"
+//    var mapOut = "bcdefghijklmnopqrstuvwxyza22233344455566677778889999123456789"
+//
+//    for char in line {
+////        if (char >= "a" && char <= "z") || (char >= "A" && char <= "Z") {
+//            let index = mapIn.firstIndex(of: char)
+//            print(mapOut[index!], terminator: "")
+////        } else  {
+////            print(char,  terminator: "")
+////        }
+//
+//    }
+//}
+
+
+/*
+ 描述
+ 实现删除字符串中出现次数最少的字符，若出现次数最少的字符有多个，则把出现次数最少的字符都删除。输出删除这些单词后的字符串，字符串中其它字符保持原来的顺序。
+
+ 数据范围：输入的字符串长度满足
+ 1
+ ≤
+ 𝑛
+ ≤
+ 20
+  
+ 1≤n≤20  ，保证输入的字符串中仅出现小写字母
+ 输入描述：
+ 字符串只包含小写英文字母, 不考虑非法输入，输入的字符串长度小于等于20个字节。
+
+ 输出描述：
+ 删除字符串中出现次数最少的字符后的字符串。
+ 
+ 输入
+ aabcddd
+ 输出
+ aaddd
+ */
+
+//while let line = readLine() {
+//
+//    var charCount: [Character:Int] = [:]
+//    
+//    for char in line {
+//         if charCount.keys.contains(char) {
+//             charCount[char]! += 1
+//         } else {
+//             charCount[char] = 1
+//         }
+//     }
+//    
+//    let min = charCount.values.min()
+//    
+//    for (key, value) in charCount {
+//        if value == min {
+//            charCount.removeValue(forKey: key)
+//        }
+//    }
+//
+//    var result = line.filter({ charCount.keys.contains($0) })
+//    
+//    print(result)
+//    
+//
+//}
+
+/*
+ 描述
+ N 位同学站成一排，音乐老师要请最少的同学出列，使得剩下的 K 位同学排成合唱队形。
+
+ 设K位同学从左到右依次编号为 1，2…，K ，他们的身高分别为
+ 𝑇1,𝑇2,…,𝑇𝐾，若存在 i(1≤i≤K) 使得𝑇1<𝑇2<.....<𝑇𝑖−1<𝑇𝑖T 且Ti>Ti+1>......>TK
+ ​，则称这K名同学排成了合唱队形。
+ 通俗来说，能找到一个同学，他的两边的同学身高都依次严格降低的队形就是合唱队形。
+ 例子：
+ 123 124 125 123 121 是一个合唱队形
+ 123 123 124 122不是合唱队形，因为前两名同学身高相等，不符合要求
+ 123 122 121 122不是合唱队形，因为找不到一个同学，他的两侧同学身高递减。
+
+ 你的任务是，已知所有N位同学的身高，计算最少需要几位同学出列，可以使得剩下的同学排成合唱队形。
+
+ 注意：不允许改变队列元素的先后顺序 且 不要求最高同学左右人数必须相等
+ 
+ 数据范围：
+ 1≤n≤3000
+ 
+ 输入描述：
+ 用例两行数据，第一行是同学的总数 N ，第二行是 N 位同学的身高，以空格隔开
+
+ 输出描述：
+ 最少需要几位同学出列
+ 
+ 输入：
+ 8
+ 186 186 150 200 160 130 197 200
+ 
+ 输出：
+ 4
+
+ 说明：
+ 由于不允许改变队列元素的先后顺序，所以最终剩下的队列应该为186 200 160 130或150 200 160 130
+ 
+ */
+
+// let num = Int(readLine()!)
+//    let list = readLine()!.components(separatedBy: " ").map{Int($0)}
+//    var arr = [Int]()
+//    for item in list {
+//        arr.append(item!)
+//    }
+//    var arrL = Array(repeating: 0, count: num!)
+//    var arrR = Array(repeating: 0, count: num!)
+//    
+//    for i in 0..<num! {
+//        for j in 0..<i {
+//            if arr[i] > arr[j] {
+//                arrL[i] = max(arrL[j] + 1, arrL[i])
+//            }
+//        }
+//    }
+//    
+//    for i in stride(from: num! - 1, to: 0, by: -1){
+//        for j in stride(from: num! - 1, to: i, by: -1) {
+//            if arr[i] > arr[j] {
+//                arrR[i] = max(arrR[j] + 1, arrR[i])
+//            }
+//        }
+//    }
+//    
+//    var maxValue = 0
+//    for i in 0..<num! {
+//        maxValue = max(maxValue, arrL[i] + arrR[i] + 1)
+//    }
+//    
+////    print(arr, arrL, arrR, separator: "\n")
+//    print(num! - maxValue)
+
+
+//8
+//186 186 150 200 160 130 197 200
+
+
+//let num = Int(readLine()!)
+//let list = readLine()!.components(separatedBy: " ").map{Int($0)}
+//var arr = [Int]()
+//var arrL = [Int]()
+//var arrR = [Int]()
+//for i in 0..<list.count {
+//    arr.append(list[i]!)
+//    arrL.append(0)
+//    arrR.append(0)
+//
+//}
+//for i in 0..<num! {
+//    for j in 0..<i {
+//        if arr[i] > arr[j] {
+//            arrL[i] = max(arrL[j] + 1, arrL[i])
+//        }
+//    }
+//}
+//for i in stride(from: num! - 1, through: 0, by: -1) {
+//    for j in stride(from: num! - 1, to: i, by: -1) {
+//        if arr[i] > arr[j] {
+//            arrR[i] = max(arrR[j] + 1, arrR[i])
+//        }
+//    }
+//}
+//
+//var maxValue = 0
+//for i in 0..<num! {
+//    maxValue = max(maxValue, arrR[i] + arrL[i] + 1)
+//}
+//print(num! - maxValue)
+
+//while let line = readLine() {
+//    var number = Int(line)!
+//    var count = 0
+//    while number != 0 {
+//        var lastNumber = number % 10
+//        var newCount = count * 10 + lastNumber
+//        if (newCount - lastNumber) / 10 != count {
+//            print(0)
+//        }
+//        count = newCount
+//        number /= 10
 //    }
 //    print(count)
 //}
