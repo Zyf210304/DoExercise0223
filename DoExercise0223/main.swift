@@ -733,75 +733,193 @@ import Foundation
  
  */
 
-// let num = Int(readLine()!)
-//    let list = readLine()!.components(separatedBy: " ").map{Int($0)}
+//var num = Int(readLine()!)
+//var num = 8
+//let str = "186 186 150 200 160 130 197 200"
+////    let list = readLine()!.components(separatedBy: " ").map{Int($0)}
+//let list = str.components(separatedBy: " ").map{Int($0)}
 //    var arr = [Int]()
 //    for item in list {
 //        arr.append(item!)
 //    }
-//    var arrL = Array(repeating: 0, count: num!)
-//    var arrR = Array(repeating: 0, count: num!)
-//    
-//    for i in 0..<num! {
+//    var arrL = Array(repeating: 0, count: num)
+//    var arrR = Array(repeating: 0, count: num)
+//
+//    for i in 0..<num {
 //        for j in 0..<i {
 //            if arr[i] > arr[j] {
 //                arrL[i] = max(arrL[j] + 1, arrL[i])
+//                print("\n", j ,i)
+//                print(arr, arrL, separator: "\n")
 //            }
 //        }
 //    }
-//    
-//    for i in stride(from: num! - 1, to: 0, by: -1){
-//        for j in stride(from: num! - 1, to: i, by: -1) {
+//
+//    for i in stride(from: num - 1, to: 0, by: -1){
+//        for j in stride(from: num - 1, to: i, by: -1) {
 //            if arr[i] > arr[j] {
 //                arrR[i] = max(arrR[j] + 1, arrR[i])
 //            }
 //        }
 //    }
-//    
+//
 //    var maxValue = 0
-//    for i in 0..<num! {
+//    for i in 0..<num {
 //        maxValue = max(maxValue, arrL[i] + arrR[i] + 1)
 //    }
-//    
+//
 ////    print(arr, arrL, arrR, separator: "\n")
-//    print(num! - maxValue)
+//    print(num - maxValue)
 
 
-//8
-//186 186 150 200 160 130 197 200
+/*
+ 描述
+ 定义一个单词的“兄弟单词”为：交换该单词字母顺序（注：可以交换任意次），而不添加、删除、修改原有的字母就能生成的单词。
+ 兄弟单词要求和原来的单词不同。例如： ab 和 ba 是兄弟单词。 ab 和 ab 则不是兄弟单词。
+ 现在给定你 n 个单词，另外再给你一个单词 x ，让你寻找 x 的兄弟单词里，按字典序排列后的第 k 个单词是什么？
+ 注意：字典中可能有重复单词。
 
+ 数据范围： 1≤n≤1000 ，输入的字符串长度满足 1≤len(str)≤1  1≤k<n
+ 输入描述：
+ 输入只有一行。 先输入字典中单词的个数n，再输入n个单词作为字典单词。 然后输入一个单词x 最后后输入一个整数k
+ 输出描述：
+ 第一行输出查找到x的兄弟单词的个数m 第二行输出查找到的按照字典顺序排序后的第k个兄弟单词，没有符合第k个的话则不用输出。
+ 
+ 输入
+ 3 abc bca cab abc 1
+输出
+ 2
+ bca
 
-//let num = Int(readLine()!)
-//let list = readLine()!.components(separatedBy: " ").map{Int($0)}
-//var arr = [Int]()
-//var arrL = [Int]()
-//var arrR = [Int]()
-//for i in 0..<list.count {
-//    arr.append(list[i]!)
-//    arrL.append(0)
-//    arrR.append(0)
+ 输入
+ 6 cab ad abcd cba abc bca abc 1
+ 输出
+ 3
+ bca
+ */
+
+//func checkStr(_ x: String, _ borStr: String) -> Bool {
+//    if x == borStr || x.count != borStr.count{
+//        return false
+//    }
 //
+//    let currentArr = Array(x)
+//    let borArr = Array(borStr)
+//
+//    if currentArr.sorted() == borArr.sorted() {
+//        return  true
+//    }
+//
+//    return false
 //}
-//for i in 0..<num! {
-//    for j in 0..<i {
-//        if arr[i] > arr[j] {
-//            arrL[i] = max(arrL[j] + 1, arrL[i])
+//
+//while let line = readLine() {
+//    let list = line.components(separatedBy: " ")
+//    let n = Int(list[0])
+//    let x = list[list.count - 2]
+//    let k = Int(list.last!)!
+//
+//    var broArr = [String]()
+//
+//    for str in list[1...list.count - 3] {
+//        if checkStr(x, str) {
+//            broArr.append(str)
 //        }
 //    }
-//}
-//for i in stride(from: num! - 1, through: 0, by: -1) {
-//    for j in stride(from: num! - 1, to: i, by: -1) {
-//        if arr[i] > arr[j] {
-//            arrR[i] = max(arrR[j] + 1, arrR[i])
-//        }
+//    print(broArr.count)
+//    if(broArr.count >= k) {
+//        print(broArr.sorted()[k - 1])
 //    }
 //}
+
+/*
+ 描述
+ 对输入的字符串进行加解密，并输出。
+
+ 加密方法为：
+
+ 当内容是英文字母时则用该英文字母的后一个字母替换，同时字母变换大小写,如字母a时则替换为B；字母Z时则替换为a；
+
+ 当内容是数字时则把该数字加1，如0替换1，1替换2，9替换0；
+
+ 其他字符不做变化。
+
+ 解密方法为加密的逆过程。
+ 数据范围：输入的两个字符串长度满足
+ 1
+ ≤
+ 𝑛
+ ≤
+ 1000
+  
+ 1≤n≤1000  ，保证输入的字符串都是只由大小写字母或者数字组成
+ 输入描述：
+ 第一行输入一串要加密的密码
+ 第二行输入一串加过密的密码
+
+ 输出描述：
+ 第一行输出加密后的字符
+ 第二行输出解密后的字符
+ */
+
+
+//    var mapIn = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+//    var mapOut = "bcdefghijklmnopqrstuvwxyzaBCDEFGHIJKLMNOPQRSTUVWXYZA1234567890"
 //
-//var maxValue = 0
-//for i in 0..<num! {
-//    maxValue = max(maxValue, arrR[i] + arrL[i] + 1)
-//}
-//print(num! - maxValue)
+//    let line1 = readLine()!
+//    let line2 = readLine()!
+//
+//    for char in line1 {
+//        let index = mapIn.firstIndex(of: char)
+//        print(mapOut[index!], terminator: "")
+//    }
+//    print()
+//    for char in line2 {
+//        let index = mapOut.firstIndex(of: char)
+//        print(mapIn[index!], terminator: "")
+//    }
+//    print()
+
+/*
+ 描述
+ 对字符串中的所有单词进行倒排。
+
+ 说明：
+
+ 1、构成单词的字符只有26个大写或小写英文字母；
+
+ 2、非构成单词的字符均视为单词间隔符；
+
+ 3、要求倒排后的单词间隔符以一个空格表示；如果原字符串中相邻单词间有多个间隔符时，倒排转换后也只允许出现一个空格间隔符；
+
+ 4、每个单词最长20个字母；
+
+ 数据范围：字符串长度满足
+ 1≤n≤10000
+ 输入描述：
+ 输入一行，表示用来倒排的句子
+
+ 输出描述：
+ 输出句子的倒排结果
+
+ 输入 I am a student
+ 输出 student a am I
+ 
+ 输入 $bo*y gi!r#l
+输出 l r gi y bo
+
+ */
+
+
+let line = readLine()
+let regux = try NSRegularExpression(pattern: "[^a-zA-Z]")
+let res = regux.stringByReplacingMatches(in: line!, range: NSMakeRange(0, line!.count), withTemplate: " ")
+let array = res.split(separator: " ")
+for i in (0..<array.count).reversed() {
+    print(array[i], terminator: " ")
+}
+
+
 
 //while let line = readLine() {
 //    var number = Int(line)!
