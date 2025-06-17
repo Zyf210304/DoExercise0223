@@ -960,32 +960,59 @@ import Foundation
 //1 输出转换成10进制的IP地址
 //2 输出转换后的IP地址
 
-while let line = readLine() {
-    if line.contains("."){
-        let parts = line.split(separator: ".").compactMap{ UInt8($0)}
-        var binaryValue = ""
-        for part in parts {
-            //每段ip转换成二进制
-            let binaryPart = String(part, radix: 2)
-            //为了保持每个段8位对其 补齐零
-            binaryValue += String(repeating: "0", count: 8 - binaryPart.count) + binaryPart
-        }
-        
-//        print(binaryValue)
-        if let decimalValue = UInt32(binaryValue, radix: 2) {
-            print(decimalValue)
-        }
-    } else {
-        if let decimal  = UInt32(line) {
-//            print(decimal)
-            var ipParts = [String]()
-            for i in stride(from: 24, through: 0, by: -8) {
-                let byte = (decimal >> i) & 0xFF
-                ipParts.append(String(byte))
-//                print("\(i) ---- \(byte)")
-            }
-            print(ipParts.map{$0}.joined(separator: "."))
-        }
-            
+//while let line = readLine() {
+//    if line.contains("."){
+//        let parts = line.split(separator: ".").compactMap{ UInt8($0)}
+//        var binaryValue = ""
+//        for part in parts {
+//            //每段ip转换成二进制
+//            let binaryPart = String(part, radix: 2)
+//            //为了保持每个段8位对其 补齐零
+//            binaryValue += String(repeating: "0", count: 8 - binaryPart.count) + binaryPart
+//        }
+//        
+//        if let decimalValue = UInt32(binaryValue, radix: 2) {
+//            print(decimalValue)
+//        }
+//    } else {
+//        if let decimal  = UInt32(line) {
+//
+//            var ipParts = [String]()
+//            for i in stride(from: 24, through: 0, by: -8) {
+//                let byte = (decimal >> i) & 0xFF
+//                ipParts.append(String(byte))
+//            }
+//            print(ipParts.map{$0}.joined(separator: "."))
+//        }
+//            
+//    }
+//}
+
+/*
+ 密码截取
+ https://www.nowcoder.com/practice/3cd4621963e8454594f00199f4536bb1?tpId=37&tqId=21255&rp=1&sourceUrl=%2Fexam%2Foj%2Fta%3FtpId%3D37&difficulty=undefined&judgeStatus=undefined&tags=&title=
+ */
+if let line = readLine() {
+    var arr = [Character]()
+    for s in line {
+        arr.append(s)
     }
+    var res = 0
+    for i in 0..<arr.count {
+        let len1 = maxlong(arr, i, i)
+        let len2 = maxlong(arr, i, i + 1)
+        let len = max(len1, len2)
+        res = max(len, res)
+    }
+    print(res)
+}
+
+func maxlong(_ s: [Character], _ l: Int, _ r: Int) -> Int {
+    var left = l
+    var right = r
+    while left >= 0 && right < s.count && s[left] == s[right] {
+        left -= 1
+        right += 1
+    }
+    return right - left - 1
 }
