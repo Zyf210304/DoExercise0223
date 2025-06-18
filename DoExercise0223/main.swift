@@ -992,27 +992,69 @@ import Foundation
  密码截取
  https://www.nowcoder.com/practice/3cd4621963e8454594f00199f4536bb1?tpId=37&tqId=21255&rp=1&sourceUrl=%2Fexam%2Foj%2Fta%3FtpId%3D37&difficulty=undefined&judgeStatus=undefined&tags=&title=
  */
-if let line = readLine() {
-    var arr = [Character]()
-    for s in line {
-        arr.append(s)
-    }
-    var res = 0
-    for i in 0..<arr.count {
-        let len1 = maxlong(arr, i, i)
-        let len2 = maxlong(arr, i, i + 1)
-        let len = max(len1, len2)
-        res = max(len, res)
-    }
-    print(res)
-}
+//if let line = readLine() {
+//    var arr = [Character]()
+//    for s in line {
+//        arr.append(s)
+//    }
+//    var res = 0
+//    for i in 0..<arr.count {
+//        let len1 = maxlong(arr, i, i)
+//        let len2 = maxlong(arr, i, i + 1)
+//        let len = max(len1, len2)
+//        res = max(len, res)
+//    }
+//    print(res)
+//}
+//
+//func maxlong(_ s: [Character], _ l: Int, _ r: Int) -> Int {
+//    var left = l
+//    var right = r
+//    while left >= 0 && right < s.count && s[left] == s[right] {
+//        left -= 1
+//        right += 1
+//    }
+//    return right - left - 1
+//}
 
-func maxlong(_ s: [Character], _ l: Int, _ r: Int) -> Int {
-    var left = l
-    var right = r
-    while left >= 0 && right < s.count && s[left] == s[right] {
-        left -= 1
-        right += 1
+
+/*
+图片整理
+ https://www.nowcoder.com/practice/2de4127fda5e46858aa85d254af43941?tpId=37&tqId=21257&rp=1&sourceUrl=%2Fexam%2Foj%2Fta%3FtpId%3D37&difficulty=undefined&judgeStatus=undefined&tags=&title=
+ */
+//while let line = readLine() {
+//    let strArr = line.sorted()
+//    for item in strArr {
+//        print(item, terminator: "")
+//    }
+//}
+
+/*
+字符串加密
+ https://www.nowcoder.com/practice/e4af1fe682b54459b2a211df91a91cf3?tpId=37&tqId=21259&rp=1&sourceUrl=%2Fexam%2Foj%2Fta%3FtpId%3D37&difficulty=undefined&judgeStatus=undefined&tags=&title=
+ */
+
+while let key = readLine(), let word = readLine() {
+    let normal = "abcdefghijklmnopqrstuvwxyz"
+    var indexs = [String.Index]()
+    for char in word {
+        indexs.append(normal.firstIndex(of: char)!)
     }
-    return right - left - 1
+    var newWord = ""
+    for char in key {
+        if !newWord.contains(char) {
+            newWord.append(char)
+        }
+    }
+    for char in normal {
+        if !newWord.contains(char) {
+            newWord.append(char)
+        }
+    }
+    
+    var reslut = ""
+    for idx in indexs {
+        reslut.append(newWord[idx])
+    }
+    print(reslut,terminator: "\n")
 }
