@@ -1034,27 +1034,50 @@ import Foundation
  https://www.nowcoder.com/practice/e4af1fe682b54459b2a211df91a91cf3?tpId=37&tqId=21259&rp=1&sourceUrl=%2Fexam%2Foj%2Fta%3FtpId%3D37&difficulty=undefined&judgeStatus=undefined&tags=&title=
  */
 
-while let key = readLine(), let word = readLine() {
-    let normal = "abcdefghijklmnopqrstuvwxyz"
-    var indexs = [String.Index]()
-    for char in word {
-        indexs.append(normal.firstIndex(of: char)!)
+//while let key = readLine(), let word = readLine() {
+//    let normal = "abcdefghijklmnopqrstuvwxyz"
+//    var indexs = [String.Index]()
+//    for char in word {
+//        indexs.append(normal.firstIndex(of: char)!)
+//    }
+//    var newWord = ""
+//    for char in key {
+//        if !newWord.contains(char) {
+//            newWord.append(char)
+//        }
+//    }
+//    for char in normal {
+//        if !newWord.contains(char) {
+//            newWord.append(char)
+//        }
+//    }
+//    
+//    var reslut = ""
+//    for idx in indexs {
+//        reslut.append(newWord[idx])
+//    }
+//    print(reslut,terminator: "\n")
+//}
+
+/*
+统计每个月兔子总数
+ https://www.nowcoder.com/practice/1221ec77125d4370833fd3ad5ba72395?tpId=37&tqId=21260&rp=1&sourceUrl=%2Fexam%2Foj%2Fta%3FtpId%3D37&difficulty=undefined&judgeStatus=undefined&tags=&title=
+ */
+
+func solution(_ mouth: Int) -> Int {
+    var oneMonth = 1
+    var twoMonth = 0
+    var threeMonth = 0
+    var addValue = 0
+    for i in 2...mouth {
+        threeMonth += twoMonth
+        twoMonth = oneMonth
+        oneMonth = addValue
+        addValue = twoMonth + threeMonth
     }
-    var newWord = ""
-    for char in key {
-        if !newWord.contains(char) {
-            newWord.append(char)
-        }
-    }
-    for char in normal {
-        if !newWord.contains(char) {
-            newWord.append(char)
-        }
-    }
-    
-    var reslut = ""
-    for idx in indexs {
-        reslut.append(newWord[idx])
-    }
-    print(reslut,terminator: "\n")
+    return oneMonth + twoMonth + threeMonth
+}
+
+while let line = readLine() {
+    print(solution(Int(line)!))
 }
