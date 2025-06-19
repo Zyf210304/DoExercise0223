@@ -1064,20 +1064,47 @@ import Foundation
  https://www.nowcoder.com/practice/1221ec77125d4370833fd3ad5ba72395?tpId=37&tqId=21260&rp=1&sourceUrl=%2Fexam%2Foj%2Fta%3FtpId%3D37&difficulty=undefined&judgeStatus=undefined&tags=&title=
  */
 
-func solution(_ mouth: Int) -> Int {
-    var oneMonth = 1
-    var twoMonth = 0
-    var threeMonth = 0
-    var addValue = 0
-    for i in 2...mouth {
-        threeMonth += twoMonth
-        twoMonth = oneMonth
-        oneMonth = addValue
-        addValue = twoMonth + threeMonth
-    }
-    return oneMonth + twoMonth + threeMonth
-}
+//func solution(_ mouth: Int) -> Int {
+//    var oneMonth = 1
+//    var twoMonth = 0
+//    var threeMonth = 0
+//    var addValue = 0
+//    for i in 2...mouth {
+//        threeMonth += twoMonth
+//        twoMonth = oneMonth
+//        oneMonth = addValue
+//        addValue = twoMonth + threeMonth
+//    }
+//    return oneMonth + twoMonth + threeMonth
+//}
+//
+//while let line = readLine() {
+//    print(solution(Int(line)!))
+//}
 
-while let line = readLine() {
-    print(solution(Int(line)!))
-}
+/*
+ 蛇形矩阵
+ https://www.nowcoder.com/practice/649b210ef44446e3b1cd1be6fa4cab5e?tpId=37&tqId=21258&rp=1&sourceUrl=%2Fexam%2Foj%2Fta%3FtpId%3D37&difficulty=undefined&judgeStatus=undefined&tags=&title=
+ */
+
+//while let line = readLine(), let num = Int(line) {
+//    var arr:[[Int]] = []
+//    for i in 0..<num {
+//        let columnCount = num - i;
+//        var column: [Int] = Array(repeating: 0, count: columnCount)
+//        for j in 0..<columnCount {
+//            if i == 0, j == 0 {
+//                column[j] = 1
+//            } else if j == 0 {
+//                column[j] = arr[i - 1][j] + (i + j)
+//            } else {
+//                column[j] = column[j - 1] + (i + j + 1)
+//            }
+//            print(column[j] , terminator: " ")
+//        }
+//        
+//        arr.append(column)
+//        print("\n", terminator: "")
+//    }
+//}
+        
