@@ -1108,3 +1108,25 @@ import Foundation
 //    }
 //}
         
+/*
+称砝码
+ https://www.nowcoder.com/practice/f9a4c19050fc477e9e27eb75f3bfd49c?tpId=37&tqId=21264&rp=1&sourceUrl=%2Fexam%2Foj%2Fta%3FtpId%3D37&difficulty=undefined&judgeStatus=undefined&tags=&title=
+ */
+
+while let n = Int(readLine() ?? "") {
+    let ws = readLine() ?? ""
+    let ns = readLine() ?? ""
+    let weights = ws.components(separatedBy: " ").map{Int($0) ?? 0}
+    let numbers = ns.components(separatedBy: " ").map{Int($0) ?? 0}
+    var kinds = Set<Int>()
+    kinds.insert(0)
+    for i in 0..<n {
+        for _ in 0..<numbers[i] {
+            let temp = kinds
+            temp.forEach { val in
+                kinds.insert(val + weights[i])
+            }
+        }
+    }
+    print(kinds.count)
+}
