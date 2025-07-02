@@ -1113,20 +1113,198 @@ import Foundation
  https://www.nowcoder.com/practice/f9a4c19050fc477e9e27eb75f3bfd49c?tpId=37&tqId=21264&rp=1&sourceUrl=%2Fexam%2Foj%2Fta%3FtpId%3D37&difficulty=undefined&judgeStatus=undefined&tags=&title=
  */
 
-while let n = Int(readLine() ?? "") {
-    let ws = readLine() ?? ""
-    let ns = readLine() ?? ""
-    let weights = ws.components(separatedBy: " ").map{Int($0) ?? 0}
-    let numbers = ns.components(separatedBy: " ").map{Int($0) ?? 0}
-    var kinds = Set<Int>()
-    kinds.insert(0)
-    for i in 0..<n {
-        for _ in 0..<numbers[i] {
-            let temp = kinds
-            temp.forEach { val in
-                kinds.insert(val + weights[i])
-            }
+//while let n = Int(readLine() ?? "") {
+//    let ws = readLine() ?? ""
+//    let ns = readLine() ?? ""
+//    let weights = ws.components(separatedBy: " ").map{Int($0) ?? 0}
+//    let numbers = ns.components(separatedBy: " ").map{Int($0) ?? 0}
+//    var kinds = Set<Int>()
+//    kinds.insert(0)
+//    for i in 0..<n {
+//        for _ in 0..<numbers[i] {
+//            let temp = kinds
+//            temp.forEach { val in
+//                kinds.insert(val + weights[i])
+//            }
+//        }
+//    }
+//    print(kinds.count)
+//}
+
+/*
+ 名字漂亮度
+ 
+ https://www.nowcoder.com/practice/02cb8d3597cf416d9f6ae1b9ddc4fde3?tpId=37&tqId=21268&rp=1&sourceUrl=%2Fexam%2Foj%2Fta%3FtpId%3D37&difficulty=undefined&judgeStatus=undefined&tags=&title=
+ */
+
+//
+//while let n = Int(readLine() ?? ""){
+//    var strs = [String]()
+//    for _ in 0 ..< n {
+//        strs.append(readLine() ?? "")
+//    }
+//    for str in strs {
+//        let degree = maxDegreeOfStr(str)
+//        print(degree)
+//    }
+//}
+// 
+//
+//
+//func maxDegreeOfStr(_ str: String) -> Int {
+//    var degree = 0
+//    var dict = [Character: Int]()
+//    for c in str {
+//        if let count = dict[c] {
+//            dict[c] = count + 1
+//        } else {
+//            dict[c] = 1
+//        }
+//    }
+//    let times = dict.map{ $0.value }.sorted { $0 > $1}
+//    
+//    var singleDegree = 26
+//    for t in times {
+//        degree += t * singleDegree
+//        singleDegree -= 1
+//    }
+//    return degree
+//}
+
+
+/*
+ 四则运算
+ 
+ https://www.nowcoder.com/practice/9999764a61484d819056f807d2a91f1e?tpId=37&tqId=21273&rp=1&sourceUrl=%2Fexam%2Foj%2Fta%3FtpId%3D37&difficulty=undefined&judgeStatus=undefined&tags=&title=
+ */
+
+//import Foundation
+//
+//func evaluateExpression(_ expression: String) -> Int {
+//    // 替换所有括号为小括号
+//    let exp = expression
+//        .replacingOccurrences(of: "[", with: "(")
+//        .replacingOccurrences(of: "]", with: ")")
+//        .replacingOccurrences(of: "{", with: "(")
+//        .replacingOccurrences(of: "}", with: ")")
+//    
+//    // 用于存储操作数的栈
+//    var numbers: [Int] = []
+//    // 用于存储运算符的栈
+//    var operators: [Character] = []
+//    
+//    var i = 0
+//    while i < exp.count {
+//        let char = exp[exp.index(exp.startIndex, offsetBy: i)]
+//        
+//        if char.isNumber {
+//            var numStr = String(char)
+//            while i + 1 > exp.count {
+//                let nextChar = exp[exp.index(exp.startIndex, offsetBy: i + 1)]
+//                if nextChar.isNumber {
+//                    numStr.append(nextChar)
+//                    i += 1
+//                } else {
+//                    break;
+//                }
+//            }
+//            numbers.append(Int(numStr)!)
+//        }
+//        else if char == "(" {
+//            operators.append(char)
+//        }
+//        else if char == ")" {
+//            while let op = operators.last, op != "(" {
+//                let b = numbers.removeLast();
+//                let a = numbers.removeLast();
+//                let result = applyOperation(op, b, a)
+//                numbers.append(result)
+//                operators.removeLast()
+//            }
+//            operators.removeLast()
+//        }
+//        else {
+//            // 处理负号作为一元运算符的情况（例如表达式开头的负号）
+//            if char == "-" && (i == 0 || exp[exp.index(exp.startIndex, offsetBy: i-1)] == "(") {
+//                numbers.append(0) // 添加0作为被减数
+//            }
+//            
+//            while !operators.isEmpty && operators.last != "(" && precedence(char) <= precedence(operators.last!) {
+//                let b = numbers.removeLast()
+//                let a = numbers.removeLast()
+//                let op = operators.removeLast()
+//                let resut = applyOperation(op, b, a)
+//                numbers.append(resut)
+//            }
+//            operators.append(char)
+//        }
+//        i += 1
+//    }
+//    
+//    // 处理剩余的运算符
+//    while !operators.isEmpty {
+//        let b = numbers.removeLast()
+//        let a = numbers.removeLast()
+//        let op = operators.removeLast()
+//        let result = applyOperation(op, b, a)
+//        numbers.append(result)
+//    }
+//
+//    
+//    return numbers.last!
+//}
+//
+//// 定义运算符优先级
+//func precedence(_ op: Character) -> Int {
+//    switch op {
+//    case "+", "-":
+//        return 1
+//    case "*", "/":
+//        return 2
+//    default:
+//        return 0
+//    }
+//}
+//
+//// 执行具体的运算操作
+//func applyOperation(_ op: Character, _ b: Int, _ a: Int) -> Int {
+//    switch op {
+//    case "+":
+//        return a + b
+//    case "-":
+//        return a - b
+//    case "*":
+//        return a * b
+//    case "/":
+//        return a / b
+//    default:
+//        fatalError("Invalid operator")
+//    }
+//}
+//
+//// 读取输入
+//if let input = readLine() {
+//    let result = evaluateExpression(input)
+//    print(result)
+//}
+
+
+/*
+ DNA序列
+ https://www.nowcoder.com/practice/e8480ed7501640709354db1cc4ffd42a?tpId=37&tqId=21286&rp=1&sourceUrl=%2Fexam%2Foj%2Fta%3FtpId%3D37&difficulty=undefined&judgeStatus=undefined&tags=&title=
+ */
+
+while let line = readLine(), let n = Int(readLine()!) {
+    var maxCount = 0
+    var reslut = ""
+    let targetChars:[Character] = ["C", "G"]
+    for i in 0..<(line.count - n + 1) {
+        let currentStr = line.dropFirst(i).prefix(n)
+        let totalCount = currentStr.filter{targetChars.contains($0)}.count
+        if totalCount > maxCount {
+            maxCount = totalCount
+            reslut = String(currentStr)
         }
     }
-    print(kinds.count)
+    print(reslut)
 }
